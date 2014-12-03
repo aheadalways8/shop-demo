@@ -1,0 +1,75 @@
+
+<div class="wrap category-page">
+	<div>
+		<input type="text" ng-model="checkfil"/>
+	</div>
+	<!--
+	<div class="filters">
+		<div class="filter-block" ng-repeat="filter in filters">
+		  <div class='filter'>{{filter.name}}</div>
+		  <div class="property"
+			   ng-repeat="property in filter.properties"
+			   ng-click="selectUnselect(filter, property)">
+			<span>{{property.name}}</span>
+			<input type='checkbox'
+				   ng-model="property.selected"
+				   ng-click="selectUnselect(filter, property)"/>
+		  </div>
+		</div>
+	</div>
+	-->
+	
+	<div class="filters">
+		<div class="filter-block">
+			<div class="filter">Color</div>
+			</div>
+			<div class="property" ng-repeat="colors in colorsGroup">
+				<b><input type="checkbox" ng-model="useColors[colors]"/>{{colors}}</b>
+				<span>({{(filterProducts | filter:colors).length}})</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="filters">
+		<div class="filter-block">
+			<div class="filter">Material</div>
+			</div>
+			<div class="property" ng-repeat="materials in materialsGroup">
+				<b><input type="checkbox" ng-model="useMaterials[materials]"/>{{materials}}</b>
+				<span>({{(filterProducts | filter:materials).length}})</span>
+			</div>
+		</div>
+	</div>
+	
+	<!--
+	<div class="filter">
+    Pant Size
+    <div>
+        <div ng-repeat="pants in pantsGroup">
+            <b><input type="checkbox" ng-model="usePants[pants]"/>{{pants}}</b>
+            <span>({{(filteredPlayers | filter:pants).length}})</span>
+        </div>
+    </div>
+    </div>
+	-->
+	
+	<div class="products">
+		<div class="product-box"
+			 ng-repeat="product in filterProducts | filter:checkfil">
+		  <div class='title'>{{product.name}}</div>
+		  <div class='show-base'>
+			<img ng-src="{{product.image}}" alt="{{product.name}}" />
+			<div class="mask">
+			  <h2>{{product.name}}</h2>
+			  <p ng-class="{old:product.specialPrice}">{{product.price}}</p>
+			  <p ng-show="product.specialPrice">{{product.specialPrice}}</p>
+			
+			  <div>
+				<a href="#/products/{{product.id}}" class="more">Details</a>
+				<a href="#/products/{{product.id}}" class="tocart">To Cart</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</div>
+</div>
